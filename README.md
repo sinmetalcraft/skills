@@ -15,20 +15,32 @@ Cloud Spannerまわりの作業を支援するAgent Skills集です。
 
 ```bash
 # 対話的にスキルを選んでインストール
-npx skills add sinmetalcraft/skills
+npx skills add sinmetalcraft/skills -a claude-code
 ```
 
 ```bash
 # 特定のスキルだけインストール
-npx skills add sinmetalcraft/skills --skill spanner-query-plan
+npx skills add sinmetalcraft/skills -a claude-code --skill spanner-query-plan
 ```
 
 ```bash
 # グローバル（~/.claude/skills/）にインストール
-npx skills add sinmetalcraft/skills -g
+npx skills add sinmetalcraft/skills -a claude-code -g
 ```
 
-インストールするとスキルフォルダが各エージェントのskillsディレクトリ（Claude Codeなら `.claude/skills/` または `~/.claude/skills/`）に配置され、`SKILL.md` の frontmatter から自動で認識されます。
+インストールするとスキルフォルダがClaude Codeのskillsディレクトリ（プロジェクトなら `.claude/skills/`、グローバル（`-g`）なら `~/.claude/skills/`）に配置され、`SKILL.md` の frontmatter から自動で認識されます。
+
+### バージョン指定
+
+`sinmetalcraft/skills` のように指定すると、デフォルトブランチ（main）の最新が入ります。
+特定のバージョンに固定したい場合は、Gitタグを指す `tree/<tag>` 形式のURLを使ってください（最新は `v0.0.1`）。
+
+```bash
+# v0.0.1 を固定してインストール
+npx skills add https://github.com/sinmetalcraft/skills/tree/v0.0.1 -a claude-code
+```
+
+インストール後は入れた時点の内容で固定され、自動では追従しません。最新に更新するには `npx skills update` を実行してください。
 
 ---
 
